@@ -62,12 +62,6 @@ client.on('qr', async (qr) => {
     }
 });
 
-// 2. Clear the QR code and confirm connection once the bot logs in
-client.on('ready', () => {
-    console.log('✅ WhatsApp Bot is logged in and ready!');
-    currentQrCodeUrl = ''; // Clear the QR code so the webpage shows the "Connected" message
-});
-
 // 3. Listen for incoming messages and reply based on your rules
 client.on('message', async (message) => {
     // Get information about the chat the message came from
