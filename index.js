@@ -84,7 +84,7 @@ client.on('message', async (message) => {
     // Trigger: "фулл дэй"
     if (text.includes('фулл дэй')) {
         // You can change this text to whatever you want the bot to say back!
-        message.reply('Отличный план на фулл дэй! Что будем делать?'); 
+        message.reply('порно'); 
     }
 });
 
