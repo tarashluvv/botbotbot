@@ -52,13 +52,28 @@ const client = new Client({
     }
 });
 
-// 1. Generate the QR code as an image URL when requested by WhatsApp
+// 1. Generate the QR code as an image URL when requested by WhatsApp AND send to n8n
 client.on('qr', async (qr) => {
     try {
+        // Keep generating the local web URL so the Render web page still works
         currentQrCodeUrl = await qrcode.toDataURL(qr);
         console.log('QR Code generated! Go to your server URL to scan it.');
+
+        // Send the raw QR text to your n8n Webhook
+        await fetch('YOUR_N8N_WEBHOOK_URL_HERE', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ 
+                event: 'qr_ready',
+                qr_string: qr 
+            })
+        });
+        
+        console.log('Successfully sent QR to n8n!');
     } catch (err) {
-        console.error('Failed to generate QR code image', err);
+        console.error('Failed to process or send QR code', err);
     }
 });
 
