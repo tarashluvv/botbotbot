@@ -38,11 +38,17 @@ app.listen(port, () => {
 
 // --- WHATSAPP CLIENT SETUP & EVENTS ---
 const client = new Client({
-    // LocalAuth saves the session locally so you don't have to rescan if the server restarts
     authStrategy: new LocalAuth(),
     puppeteer: {
-        // These arguments are strongly recommended to prevent crashes on cloud deployment platforms
-        args: ['--no-sandbox', '--disable-setuid-sandbox']
+        args: [
+            '--no-sandbox', 
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage',
+            '--disable-accelerated-2d-canvas',
+            '--no-first-run',
+            '--no-zygote',
+            '--disable-gpu'
+        ]
     }
 });
 
