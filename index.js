@@ -34,7 +34,7 @@ const client = new Client({
 client.on('qr', async (qr) => {
     console.log('QR Code generated! Sending to n8n...');
     try {
-        await fetch('YOUR_N8N_WEBHOOK_URL_HERE', {
+        await fetch('https://zharaskhannnnn.app.n8n.cloud/webhook-test/4bb1bda1-4c90-47eb-b1cc-2556e02a6cf1', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 
