@@ -67,27 +67,24 @@ client.on('message', async (message) => {
     // Get information about the chat the message came from
     const chat = await message.getChat();
 
-    // UNCOMMENT the next line if you ONLY want the bot to reply in group chats, not direct messages
-    // if (!chat.isGroup) return; 
+    // --- STRICT GROUP CHECK ---
+    const targetGroupName = 'jabai'; 
+
+    // If it's NOT a group, OR if the name doesn't match 'jabai', ignore the message entirely
+    if (!chat.isGroup || chat.name !== targetGroupName) {
+        return; 
+    }
+    // --------------------------
 
     // Convert message to lowercase to make word matching case-insensitive
     const text = message.body.toLowerCase();
 
     // --- YOUR CUSTOM BOT RULES ---
 
-    // Rule 1: Exact match command
-    if (text === '!ping') {
-        message.reply('Pong! The bot is active.');
-    }
-
-    // Rule 2: Message contains a specific phrase
-    if (text.includes('help me')) {
-        chat.sendMessage('Did someone say they need help? I am a bot, but maybe I can assist!');
-    }
-    
-    // Rule 3: Multiple specific keywords
-    if (text.includes('urgent') || text.includes('asap')) {
-        message.reply('I see you used an urgent keyword. Please tag an admin if it is an emergency.');
+    // Trigger: "фулл дэй"
+    if (text.includes('фулл дэй')) {
+        // You can change this text to whatever you want the bot to say back!
+        message.reply('Отличный план на фулл дэй! Что будем делать?'); 
     }
 });
 
